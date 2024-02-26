@@ -1,0 +1,36 @@
+.App {
+}
+
+.error {
+  color: red;
+}
+
+.button-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons button {
+  margin: 0 10px 0 0;
+}
+
+.menu ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  margin-right: 10px; /* Add spacing between menu items */
+}
+
+.state-matched {
+  color: green;
+}
+
+.state-veryhot {
+  color: coral;
+}
+h2 {
+  margin-bottom: 5px;
+}
