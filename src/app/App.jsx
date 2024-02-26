@@ -10,7 +10,7 @@ import "./App.css";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/pricegap-client">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="compare" element={<Compare />} />
