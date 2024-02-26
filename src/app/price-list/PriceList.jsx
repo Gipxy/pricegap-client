@@ -10,7 +10,9 @@ import { timeOnly } from "../../utils/util";
 
 import useWebSocket from "react-use-websocket";
 
-const WSURL = "ws://127.0.0.1:5000?storeId=1";
+//const WSURL = "ws://127.0.0.1:5000?storeId=1";
+const WSURL = import.meta.env.VITE_WS_URL;
+
 const MAX_HISTORY = 10;
 
 //1% mean veryhot
