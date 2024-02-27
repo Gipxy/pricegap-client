@@ -30,11 +30,11 @@
 }
 
 .state-warm {
-  color: yellowgreen;
+  color: darkorange;
 }
 
 .state-hot {
-  color: coral;
+  color: fuchsia;
 }
 
 .state-veryhot {
