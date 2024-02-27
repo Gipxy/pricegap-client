@@ -143,7 +143,7 @@ const PriceList = () => {
             newHotList = prevState.slice(1);
             newHotList.push(hotLog);
           } else {
-            newHotList = [...prevState, hotLog];
+            newHotList = [hotLog, ...prevState];
           }
 
           return newHotList;
