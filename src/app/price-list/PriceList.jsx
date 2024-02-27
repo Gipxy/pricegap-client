@@ -223,15 +223,13 @@ const PriceList = () => {
         <div className="button-bar">
           <h2>Live data</h2>
           <div className="buttons">
-            <button onClick={onQuote}>Quote</button>
+            {/* <button onClick={onQuote}>Quote</button> */}
             <button onClick={toggleAutoReload}>
-              {autoReload ? "Disable auto reload" : "Enable auto reload - 3s"}
+              {autoReload ? "Stop" : "3s"}
             </button>
-            <button onClick={toggleEnableV2}>
-              {enableV2 ? "Disable V2 Price" : "Enable V2 Price"}
-            </button>
+            <button onClick={toggleEnableV2}>{enableV2 ? "!V2" : "V2"}</button>
           </div>
-          <label>Refresh Time: {refreshTime}</label>
+          <label>{refreshTime}</label>
         </div>
         <AgGridReact
           rowData={rowData}
@@ -247,10 +245,10 @@ const PriceList = () => {
         />
       </div>
       <div className="button-bar" style={{ marginTop: "40px" }}>
-        <h2>Very Hot History</h2>
+        <h2>History</h2>
         <button onClick={toggleAutoRollover}>
           {" "}
-          {autoRolloverHistory ? "Dont Rollover" : "Auto Rollover"}{" "}
+          {autoRolloverHistory ? "!Roll" : "Roll"}{" "}
         </button>
         <button onClick={clearHotHistory}>Clear</button>
       </div>
