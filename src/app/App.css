@@ -18,19 +18,36 @@
   display: flex;
   list-style-type: none;
   padding: 0;
+  margin: 2px;
 }
 
 .menu li {
   margin-right: 10px; /* Add spacing between menu items */
 }
 
-.state-matched {
+.state-normal {
   color: green;
 }
 
-.state-veryhot {
+.state-warm {
+  color: yellowgreen;
+}
+
+.state-hot {
   color: coral;
 }
+
+.state-veryhot {
+  color: red;
+}
 h2 {
-  margin-bottom: 5px;
+  margin: 5px;
+}
+
+div.ag-theme-quartz div.ag-row {
+  font-size: 12px !important;
+}
+
+div.ag-theme-quartz .ag-header-cell-text {
+  font-size: 12px !important;
 }

@@ -15,22 +15,19 @@ const WSURL = import.meta.env.VITE_WS_URL;
 
 const MAX_HISTORY = 10;
 
+let g_autoRollover = false;
+
 //1% mean veryhot
 const isVeryHot = (ask, bid) => {
-  if (ask <= bid * 1.01) {
+  if (ask <= bid) {
     return true;
   }
   return false;
 };
 
 const buildHotLog = (rowNode) => {
-  let state = "VERYHOT";
-  if (
-    rowNode.data.kcBestAsk <= rowNode.data.bidV3 ||
-    rowNode.data.kcBestBid >= rowNode.data.askV3
-  ) {
-    state = "MATCHED";
-  }
+  let pcBidPercent = calcPercent(rowNode.data.bidV3, rowNode.data.kcBestAsk);
+  let pcAskPercent = calcPercent(rowNode.data.kcBestBid, rowNode.data.askV3);
 
   const hotLog = {
     id: rowNode.data.id,
@@ -40,7 +37,9 @@ const buildHotLog = (rowNode) => {
     amountIn: rowNode.data.amountIn,
     amountOut: rowNode.data.amountOut,
     bidV3: rowNode.data.bidV3,
+    pcBidPercent: pcBidPercent,
     askV3: rowNode.data.askV3,
+    pcAskPercent: pcAskPercent,
     taken: rowNode.data.taken,
     kcPrice: rowNode.data.kcPrice,
     kcSize: rowNode.data.kcSize,
@@ -49,7 +48,6 @@ const buildHotLog = (rowNode) => {
     kcBestBid: rowNode.data.kcBestBid,
     kcBestBidSize: rowNode.data.kcBestBidSize,
     kcTime: rowNode.data.kcTime,
-    state: state,
   };
 
   return hotLog;
@@ -76,21 +74,19 @@ async function fetchKcPrice(row, rowNode) {
 
 const colDefs = [
   { field: "id", width: 50 },
-  { field: "pair", width: 120 },
-  { field: "amountIn", headerName: "Amt In", width: 100 },
-
-  { field: "bidV3", width: 100 },
-  { field: "askV3", width: 100 },
-
-  { field: "kcPrice", width: 100 },
-  { field: "kcSize", headerName: "size", width: 100 },
-  { field: "kcBestBid", headerName: "Best Bid", width: 100 },
-  { field: "kcBestBidSize", headerName: "Best BidSize", width: 130 },
-  { field: "kcBestAsk", headerName: "BestAsk", width: 100 },
-  { field: "kcBestAskSize", headerName: "Best AskSize", width: 130 },
-  { field: "kcTime", headerName: "Time", width: 120 },
-  { field: "kcTaken", headerName: "Taken", width: 80 },
-  { field: "amountOut", headerName: "Amt Out V2", width: 120 },
+  { field: "pair", width: 110 },
+  { field: "amountIn", headerName: "Amt In", width: 70 },
+  { field: "bidV3", width: 90 },
+  { field: "kcBestAsk", headerName: "KcAsk", width: 90 },
+  { field: "kcBestBid", headerName: "KcBid", width: 90 },
+  { field: "askV3", width: 90 },
+  { field: "kcBestBidSize", headerName: "BidSize", width: 90 },
+  { field: "kcBestAskSize", headerName: "AskSize", width: 90 },
+  { field: "kcPrice", width: 90 },
+  { field: "kcSize", headerName: "size", width: 90 },
+  { field: "kcTime", headerName: "KcTime", width: 110 },
+  { field: "kcTaken", headerName: "KcTaken", width: 80 },
+  { field: "amountOut", headerName: "Amt Out V2", width: 130 },
   { field: "taken", headerName: "Taken V2", width: 80 },
 ];
 
@@ -111,7 +107,7 @@ const PriceList = () => {
   // Column Definitions: Defines & controls grid columns.
   const gridApiRef = useRef();
   const [autoReload, setAutoReload] = useState(null);
-  const [autoRolloverHistory, setAutoRolloverHistory] = useState(true);
+  const [autoRolloverHistory, setAutoRolloverHistory] = useState(false);
 
   // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState(initPriceList());
@@ -137,10 +133,13 @@ const PriceList = () => {
           isVeryHot(rowNode.data.askV3, ticker.bestBid))
       ) {
         const hotLog = buildHotLog(rowNode);
+
         setHotList((prevState) => {
           let newHotList;
 
-          if (autoRolloverHistory && prevState.length >= MAX_HISTORY) {
+          console.log("g_autoRollover:", g_autoRollover);
+
+          if (g_autoRollover && prevState.length >= MAX_HISTORY) {
             newHotList = prevState.slice(1);
             newHotList.push(hotLog);
           } else {
@@ -163,6 +162,7 @@ const PriceList = () => {
     }
   };
   const toggleAutoRollover = () => {
+    g_autoRollover = !autoRolloverHistory;
     setAutoRolloverHistory(!autoRolloverHistory);
   };
 
@@ -218,7 +218,7 @@ const PriceList = () => {
     <div style={{ width: "100%", height: "100%" }}>
       <div
         className={"ag-theme-quartz"}
-        style={{ width: "100%", height: "180px" }}
+        style={{ width: "100%", height: "220px" }}
       >
         <div className="button-bar">
           <h2>Live data</h2>
@@ -243,7 +243,7 @@ const PriceList = () => {
           getRowId={(params) => {
             return params.data.id;
           }}
-          rowHeight={31}
+          gridOptions={defaultGridOptions}
         />
       </div>
       <div className="button-bar" style={{ marginTop: "40px" }}>
@@ -257,39 +257,63 @@ const PriceList = () => {
 
       <div
         className={"ag-theme-quartz"}
-        style={{ width: "100%", height: "400px" }}
+        style={{ width: "100%", height: "550px" }}
       >
         <AgGridReact
           rowData={hotList}
           columnDefs={hotListColDefs}
-          rowHeight={31}
+          gridOptions={defaultGridOptions}
         />
       </div>
     </div>
   );
 };
 
+const defaultGridOptions = {
+  rowHeight: 28,
+  headerHeight: 28,
+};
 const cellStateClassRules = {
-  "state-matched": (params) => params.value == "MATCHED",
-  "state-veryhot": (params) => params.value == "VERYHOT",
+  "state-veryhot": (params) => params.value >= 2,
+  "state-hot": (params) => params.value >= 0.5 && params.value < 2,
+  "state-warm": (params) => params.value >= 0.05 && params.value < 0.5,
+  "state-normal": (params) => params.value < 0.05,
 };
 
 const hotListColDefs = [
-  { field: "kcTime", headerName: "Time", width: 120 },
-  { field: "pair", width: 120 },
-  { field: "state", width: 120, cellClassRules: cellStateClassRules },
-  { field: "bidV3", width: 100 },
-  { field: "askV3", width: 100 },
-  { field: "kcBestBid", headerName: "Best Bid", width: 100 },
-  { field: "kcBestAsk", headerName: "BestAsk", width: 100 },
-  { field: "kcBestBidSize", headerName: "Best BidSize", width: 130 },
-  { field: "kcBestAskSize", headerName: "Best AskSize", width: 130 },
+  { field: "kcTime", headerName: "KcTime", width: 110 },
+  { field: "pair", width: 110 },
+  { field: "bidV3", width: 95 },
+  {
+    field: "pcBidPercent",
+    headerName: "bidPer",
+    width: 95,
+    cellClassRules: cellStateClassRules,
+  },
+  { field: "askV3", width: 95 },
+  {
+    field: "pcAskPercent",
+    headerName: "askPer",
+    width: 95,
+    cellClassRules: cellStateClassRules,
+  },
+  { field: "kcBestBid", headerName: "Bid", width: 90 },
+  { field: "kcBestAsk", headerName: "Ask", width: 90 },
+  { field: "kcBestBidSize", headerName: "BidSize", width: 90 },
+  { field: "kcBestAskSize", headerName: "AskSize", width: 90 },
   { field: "amountIn", headerName: "Amt In V2", width: 100 },
   { field: "amountOut", headerName: "Amt Out V2", width: 120 },
-  { field: "taken", width: 80 },
+  { field: "taken", width: 70 },
   { field: "kcPrice", width: 100 },
   { field: "kcSize", headerName: "size", width: 100 },
   { field: "kcTaken", headerName: "Taken", width: 80 },
 ];
+
+function calcPercent(val1, val2) {
+  if (!val1 || !val2) {
+    return null;
+  }
+  return (((val1 - val2) * 100) / val2).toFixed(6);
+}
 
 export default PriceList;
