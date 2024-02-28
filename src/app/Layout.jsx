@@ -12,6 +12,9 @@ const Layout = () => {
             <Link to="/compare">Compare</Link>
           </li>
           <li>
+            <Link to="/hot-list">HotList</Link>
+          </li>
+          <li>
             <Link to="/pairs">Pairs</Link>
           </li>
           <li>
