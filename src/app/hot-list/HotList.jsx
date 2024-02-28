@@ -60,6 +60,11 @@ const HotList = () => {
     })();
   }, []);
 
+  const reload = async () => {
+    const data = await getHotList();
+    setRowData(data.hotList);
+  };
+
   const onFitColumns = () => {
     const api = gridApiRef.current;
 
@@ -75,6 +80,13 @@ const HotList = () => {
       className={"ag-theme-quartz"}
       style={{ width: "100%", height: "100%" }}
     >
+      <div className="button-bar">
+        <h2>Matched Log</h2>
+        <div className="buttons">
+          <button onClick={reload}>Reload</button>
+        </div>
+      </div>
+
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
