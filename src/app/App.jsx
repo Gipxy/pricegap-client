@@ -5,13 +5,13 @@ import NoPage from "./nopage/NoPage";
 import Pairs from "./pair-list/Pairs";
 import HotList from "./hot-list/HotList";
 import Layout from "./Layout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
 import "./App.css";
 
 const App = () => {
   return (
-    <BrowserRouter basename="/pricegap-client">
+    <HashRouter basename="/">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="compare" element={<Compare />} />
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
