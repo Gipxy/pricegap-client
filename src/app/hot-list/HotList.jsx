@@ -55,7 +55,8 @@ const HotList = () => {
 
   useEffect(() => {
     (async function () {
-      const data = await getHotList();
+      const numberOfDays = 7;
+      const data = await getHotList(numberOfDays);
       setRowData(data.hotList);
     })();
   }, []);
