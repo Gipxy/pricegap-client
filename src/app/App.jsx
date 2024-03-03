@@ -3,6 +3,7 @@ import Compare from "./Compare";
 import WsTest from "./wstest/WsTest";
 import NoPage from "./nopage/NoPage";
 import Pairs from "./pair-list/Pairs";
+import LiveCheck from "./live-check/LiveCheck";
 import HotList from "./hot-list/HotList";
 import Layout from "./Layout";
 import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="hot-list" element={<HotList />} />
           <Route path="ws-test" element={<WsTest />} />
           <Route path="pairs" element={<Pairs />} />
+          <Route path="live-check" element={<LiveCheck />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
