@@ -13,6 +13,10 @@ const fix2 = (params) => {
   return params.value.toFixed(2);
 };
 
+const fix4 = (params) => {
+  return params.value.toFixed(4);
+};
+
 const colDefs = [
   { field: "updatedTime", width: 140, valueFormatter: formatTime },
   { field: "batch", width: 110 },
@@ -21,10 +25,10 @@ const colDefs = [
   { field: "amount", width: 85 },
   { field: "state", width: 75, valueFormatter: (params) => params.value.substr(0, 3) },
   { field: "purpose", width: 75, valueFormatter: (params) => params.value.substr(0, 3) },
-  { field: "pcBaseBal", width: 120, valueFormatter: fix2 },
-  { field: "pcTermBal", width: 120, valueFormatter: fix2 },
-  { field: "kcBaseBal", width: 120, valueFormatter: fix2 },
-  { field: "kcTermBal", width: 120, valueFormatter: fix2 },
+  { field: "pcBaseBal", width: 100, valueFormatter: fix2 },
+  { field: "pcTermBal", width: 100, valueFormatter: fix2 },
+  { field: "kcBaseBal", width: 100, valueFormatter: fix2 },
+  { field: "kcTermBal", width: 100, valueFormatter: fix2 },
   { field: "kcBestAsk", headerName: "kcAsk", width: 90 },
   { field: "kcBestAskSize", headerName: "AskSize", width: 90, valueFormatter: fix2 },
   { field: "kcBestBid", headerName: "kcBid", width: 90 },
@@ -34,6 +38,8 @@ const colDefs = [
   { field: "kcTime", width: 140, valueFormatter: formatTime },
   { field: "pcTime", width: 140, valueFormatter: formatTime },
   { field: "matchedTimestamp", width: 140, valueFormatter: formatTime },
+  { field: "pcBidPercent", width: 100, valueFormatter: fix4 },
+  { field: "pcAskPercent", width: 100, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
   rowHeight: 28,
