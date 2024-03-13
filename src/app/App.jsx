@@ -5,6 +5,7 @@ import NoPage from "./nopage/NoPage";
 import Pairs from "./pair-list/Pairs";
 import LiveCheck from "./live-check/LiveCheck";
 import HotList from "./hot-list/HotList";
+import SwapLog from "./swap-logs/SwapLog";
 import Layout from "./Layout";
 import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route path="compare" element={<Compare />} />
           <Route path="hot-list" element={<HotList />} />
+          <Route path="swap-log" element={<SwapLog />} />
           <Route path="ws-test" element={<WsTest />} />
           <Route path="pairs" element={<Pairs />} />
           <Route path="live-check" element={<LiveCheck />} />
