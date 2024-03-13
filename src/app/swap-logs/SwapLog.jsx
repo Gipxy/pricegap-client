@@ -10,11 +10,11 @@ const formatTime = (params) => {
 };
 
 const fix2 = (params) => {
-  return params.value.toFixed(2);
+  return params.value ? params.value.toFixed(2) : "";
 };
 
 const fix4 = (params) => {
-  return params.value.toFixed(4);
+  return params.value ? params.value.toFixed(4) : "";
 };
 
 const colDefs = [
