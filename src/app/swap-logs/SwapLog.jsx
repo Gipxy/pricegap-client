@@ -9,22 +9,26 @@ const formatTime = (params) => {
   return shortDateTime(new Date(params.value));
 };
 
+const fix2 = (params) => {
+  return params.value.toFixed(2);
+};
+
 const colDefs = [
   { field: "updatedTime", width: 140, valueFormatter: formatTime },
-  { field: "batch", width: 120 },
-  { field: "pair", width: 120 },
-  { field: "side", width: 90 },
+  { field: "batch", width: 110 },
+  { field: "pair", width: 110 },
+  { field: "side", width: 80 },
   { field: "amount", width: 85 },
-  { field: "state", width: 85, valueFormatter: (params) => params.value.substr(0, 3) },
-  { field: "purpose", width: 80, valueFormatter: (params) => params.value.substr(0, 3) },
-  { field: "kcBaseBal", width: 120 },
-  { field: "kcTermBal", width: 120 },
-  { field: "pcBaseBal", width: 120 },
-  { field: "pcTermBal", width: 120 },
+  { field: "state", width: 75, valueFormatter: (params) => params.value.substr(0, 3) },
+  { field: "purpose", width: 75, valueFormatter: (params) => params.value.substr(0, 3) },
+  { field: "pcBaseBal", width: 120, valueFormatter: fix2 },
+  { field: "pcTermBal", width: 120, valueFormatter: fix2 },
+  { field: "kcBaseBal", width: 120, valueFormatter: fix2 },
+  { field: "kcTermBal", width: 120, valueFormatter: fix2 },
   { field: "kcBestAsk", headerName: "kcAsk", width: 90 },
-  { field: "kcBestAskSize", headerName: "kcAskSize", width: 100 },
+  { field: "kcBestAskSize", headerName: "AskSize", width: 90, valueFormatter: fix2 },
   { field: "kcBestBid", headerName: "kcBid", width: 90 },
-  { field: "kcBestBidSize", headerName: "kcBidSize", width: 100 },
+  { field: "kcBestBidSize", headerName: "BidSize", width: 90, valueFormatter: fix2 },
   { field: "pcPriceBid", width: 90 },
   { field: "pcPriceAsk", width: 90 },
   { field: "kcTime", width: 140, valueFormatter: formatTime },
