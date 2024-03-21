@@ -69,12 +69,17 @@ const colDefs = [
     valueFormatter: (params) => params?.value?.substr(0, 3),
   },
   {
-    field: "pc B/A",
+    field: "b/a per",
+    width: 130,
+    valueGetter: (params) => combine(params, "bPer", "aPer"),
+  },
+  {
+    field: "pc b/a",
     width: 130,
     valueGetter: (params) => combine(params, "pcBid", "pcAsk"),
   },
   {
-    field: "kc B/A",
+    field: "kc b/a",
     width: 130,
     valueGetter: (params) => combine(params, "kcBid", "kcAsk"),
   },
