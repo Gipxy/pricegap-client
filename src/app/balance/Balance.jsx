@@ -63,7 +63,11 @@ const colDefs = [
   { field: "pair", width: 110 },
   { field: "side", width: 75 },
   { field: "amount", width: 75 },
-  { field: "purpose", width: 75, valueFormatter: (params) => params.value.substr(0, 3) },
+  {
+    field: "purpose",
+    width: 75,
+    valueFormatter: (params) => params?.value?.substr(0, 3),
+  },
   {
     field: "pc B/A",
     width: 130,
