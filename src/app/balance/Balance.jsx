@@ -79,6 +79,7 @@ const colDefs = [
     valueGetter: (params) => combine(params, "kcBid", "kcAsk"),
   },
   { field: "fakeSwap", width: 80 },
+  { field: "swapSuccess", width: 80 },
 ];
 const defaultGridOptions = {
   rowHeight: 28,
