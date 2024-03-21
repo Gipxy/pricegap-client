@@ -19,7 +19,7 @@ const combine = (params, col1, col2, n) => {
 };
 
 const fix = (value, n) => {
-  return value ? value.toFixed(n) : "";
+  return value ? Number(value).toFixed(n) : "";
 };
 
 const fix2 = (params) => {
@@ -54,12 +54,12 @@ const balance = {
 
 const colDefs = [
   { field: "timestamp", width: 140, valueFormatter: formatTime },
-  { field: "pcUsdt", width: 110 },
-  { field: "pcCgpt", width: 110 },
-  { field: "pcDao", width: 110 },
-  { field: "kcUsdt", width: 110 },
-  { field: "kcCgpt", width: 110 },
-  { field: "kcDao", width: 110 },
+  { field: "pcUsdt", width: 110, valueFormatter: fix4 },
+  { field: "pcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "pcDao", width: 110, valueFormatter: fix4 },
+  { field: "kcUsdt", width: 110, valueFormatter: fix4 },
+  { field: "kcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "kcDao", width: 110, valueFormatter: fix4 },
   { field: "pair", width: 110 },
   { field: "side", width: 75 },
   { field: "amount", width: 75 },
