@@ -27,7 +27,7 @@ const fix2 = (params) => {
 };
 
 const fix8 = (params) => {
-  return fix(params.value, 4);
+  return fix(params.value, 8);
 };
 
 /*
