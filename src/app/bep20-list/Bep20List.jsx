@@ -26,7 +26,7 @@ const fix2 = (params) => {
   return fix(params.value, 2);
 };
 
-const fix4 = (params) => {
+const fix8 = (params) => {
   return fix(params.value, 4);
 };
 
@@ -72,12 +72,12 @@ const fix4 = (params) => {
 
 const colDefs = [
   { field: "time", width: 140, valueFormatter: formatTime },
-  { field: "pair", width: 100 },
+  { field: "pair", width: 110 },
   { field: "currency", width: 100 },
   { field: "fullName", width: 150 },
-  { field: "volValue", headerName: "Vol value 24h", width: 100 },
-  { field: "averagePrice", width: 100 },
-  { field: "contractAddress", width: 500 },
+  { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
+  { field: "averagePrice", width: 100, valueFormatter: fix8 },
+  { field: "contractAddress", width: 400 },
   { field: "withdrawalMinFee", width: 100 },
   { field: "precision", width: 60 },
 ];
