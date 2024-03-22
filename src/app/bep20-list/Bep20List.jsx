@@ -79,6 +79,11 @@ const colDefs = [
   { field: "averagePrice", width: 100, valueFormatter: fix8 },
   { field: "contractAddress", width: 400 },
   { field: "withdrawalMinFee", width: 100 },
+  {
+    field: "withdrawalMinVal",
+    width: 100,
+    valueGetter: (params) => fix8(params.averagePrice * params.withdrawalMinFee),
+  },
   { field: "precision", width: 60 },
 ];
 const defaultGridOptions = {
