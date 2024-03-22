@@ -75,6 +75,8 @@ const colDefs = [
   { field: "pair", width: 110 },
   { field: "currency", width: 100 },
   { field: "fullName", width: 150 },
+  { field: "bid", width: 100 },
+  { field: "ask", width: 100 },
   { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
   { field: "averagePrice", width: 100, valueFormatter: fix8 },
   { field: "contractAddress", width: 400 },
