@@ -82,7 +82,8 @@ const colDefs = [
   {
     field: "withdrawalMinVal",
     width: 100,
-    valueGetter: (params) => fix8(params.data.averagePrice * params.data.withdrawalMinFee),
+    valueGetter: (params) =>
+      Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
   },
   { field: "precision", width: 60 },
 ];
