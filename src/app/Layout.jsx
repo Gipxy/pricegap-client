@@ -21,7 +21,10 @@ const Layout = () => {
             <Link to="/pairs">Pairs</Link>
           </li>
           <li>
-            <Link to="/live-check">Live Check</Link>
+            <Link to="/bep20-list">BEP20</Link>
+          </li>
+          <li>
+            <Link to="/live-check">Live</Link>
           </li>
           {/* <li>
             <Link to="/ws-test">WS Test</Link>
