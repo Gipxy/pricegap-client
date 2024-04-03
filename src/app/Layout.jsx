@@ -5,17 +5,11 @@ const Layout = () => {
     <>
       <nav className="menu">
         <ul>
-          {/* <li>
-            <Link to="/compare">Compare</Link>
-          </li> */}
-          <li>
-            <Link to="/hot-list">HotList</Link>
-          </li>
-          <li>
-            <Link to="/swap-log">SwapLog</Link>
-          </li>
           <li>
             <Link to="/balance">Balance</Link>
+          </li>
+          <li>
+            <Link to="/hot-list">HotList</Link>
           </li>
           <li>
             <Link to="/pairs">Pairs</Link>

@@ -54,12 +54,12 @@ const balance = {
 
 const colDefs = [
   { field: "timestamp", width: 140, valueFormatter: formatTime },
-  { field: "pcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "pcCgpt", width: 110, valueFormatter: fix4 },
-  { field: "pcDao", width: 110, valueFormatter: fix4 },
-  { field: "kcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "kcCgpt", width: 110, valueFormatter: fix4 },
-  { field: "kcDao", width: 110, valueFormatter: fix4 },
+  {
+    field: "totalUsdt",
+    width: 130,
+    valueGetter: (params) => fix2(params.data.pcUsdt + params.data.kcUsdt),
+  },
+
   { field: "pair", width: 110 },
   { field: "side", width: 75 },
   { field: "amount", width: 75 },
@@ -85,6 +85,12 @@ const colDefs = [
   },
   { field: "fakeSwap", width: 80 },
   { field: "swapSuccess", width: 80 },
+  { field: "pcUsdt", width: 110, valueFormatter: fix4 },
+  { field: "pcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "pcDao", width: 110, valueFormatter: fix4 },
+  { field: "kcUsdt", width: 110, valueFormatter: fix4 },
+  { field: "kcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "kcDao", width: 110, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
   rowHeight: 28,
