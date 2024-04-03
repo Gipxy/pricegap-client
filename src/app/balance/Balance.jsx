@@ -57,7 +57,7 @@ const colDefs = [
   {
     field: "totalUsdt",
     width: 130,
-    valueGetter: (params) => fix2(Number(params.data.pcUsdt) + Number(params.data.kcUsdt)),
+    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt), 2),
   },
 
   { field: "pair", width: 110 },
@@ -86,10 +86,10 @@ const colDefs = [
   { field: "fakeSwap", width: 80 },
   { field: "swapSuccess", width: 80 },
   { field: "pcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "pcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "pcFinc", width: 110, valueFormatter: fix4 },
   { field: "pcDao", width: 110, valueFormatter: fix4 },
   { field: "kcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "kcCgpt", width: 110, valueFormatter: fix4 },
+  { field: "kcFinc", width: 110, valueFormatter: fix4 },
   { field: "kcDao", width: 110, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
