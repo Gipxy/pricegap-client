@@ -57,7 +57,7 @@ const colDefs = [
   {
     field: "totalUsdt",
     width: 120,
-    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt) + Number(params.data.gateUsdt), 2),
+    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt) + Number(params.data.gateUsdt || 0), 2),
   },
 
   { field: "pair", width: 110 },
