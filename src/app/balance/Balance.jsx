@@ -56,13 +56,12 @@ const colDefs = [
   { field: "timestamp", width: 140, valueFormatter: formatTime },
   {
     field: "totalUsdt",
-    width: 130,
-    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt), 2),
+    width: 120,
+    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt) + Number(params.data.gateUsdt), 2),
   },
 
   { field: "pair", width: 110 },
-  { field: "side", width: 75 },
-  { field: "amount", width: 75 },
+
   {
     field: "purpose",
     width: 75,
@@ -73,6 +72,8 @@ const colDefs = [
     width: 130,
     valueGetter: (params) => combine(params, "bPer", "aPer"),
   },
+  { field: "fakeSwap", width: 80 },
+  { field: "swapSuccess", width: 80 },
   {
     field: "pc b/a",
     width: 130,
@@ -83,13 +84,13 @@ const colDefs = [
     width: 130,
     valueGetter: (params) => combine(params, "kcBid", "kcAsk"),
   },
-  { field: "fakeSwap", width: 80 },
-  { field: "swapSuccess", width: 80 },
+  { field: "side", width: 75 },
+  { field: "amount", width: 75 },
+
   { field: "pcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "pcFinc", width: 110, valueFormatter: fix4 },
-  { field: "pcDao", width: 110, valueFormatter: fix4 },
   { field: "kcUsdt", width: 110, valueFormatter: fix4 },
-  { field: "kcFinc", width: 110, valueFormatter: fix4 },
+  { field: "gateUsdt", width: 110, valueFormatter: fix4 },
+  { field: "pcDao", width: 110, valueFormatter: fix4 },
   { field: "kcDao", width: 110, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
