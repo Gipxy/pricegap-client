@@ -90,7 +90,7 @@ const colDefs = [
   { field: "pcUsdt", width: 110, valueFormatter: fix4 },
   { field: "kcUsdt", width: 110, valueFormatter: fix4 },
   { field: "gateUsdt", width: 110, valueFormatter: fix4 },
-  { field: "pcDao", width: 110, valueFormatter: fix4 },
+  { field: "gateChapz", width: 110, valueFormatter: fix4 },
   { field: "kcDao", width: 110, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
