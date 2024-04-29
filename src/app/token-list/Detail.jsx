@@ -9,7 +9,7 @@ const DetailPage = () => {
 
   const { id } = useParams();
   const [tokens, setTokens] = useState([]);
-  const [token, setToken] = useState({ bnbPool: true, monitorPrice: true, decimals: 18 });
+  const [token, setToken] = useState({ bnbPool: true, monitorPrice: true, decimals: 18, cex: "gate" });
 
   //   const [token, setToken] = useState({
   //     address: "0x846f52020749715f02aef25b5d1d65e48945649d",
@@ -36,6 +36,7 @@ const DetailPage = () => {
   }, []);
 
   const handleChange = (e) => {
+    console.log(e.target.value);
     const { name, value, type, checked } = e.target;
     setToken((prevState) => ({
       ...prevState,
@@ -50,7 +51,7 @@ const DetailPage = () => {
 
     //verify all field of token are mandatory, if not alert
     if (!token.symbol || !token.address || !token.decimals || !token.amount || !token.cex || !token.amount) {
-      alert("Please fill in all fields!");
+      alert("Please fill in all fields! ");
       return;
     }
 
