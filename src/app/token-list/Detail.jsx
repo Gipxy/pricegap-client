@@ -9,7 +9,7 @@ const DetailPage = () => {
 
   const { id } = useParams();
   const [tokens, setTokens] = useState([]);
-  const [token, setToken] = useState({});
+  const [token, setToken] = useState({ bnbPool: true, monitorPrice: true, decimals: 18 });
 
   //   const [token, setToken] = useState({
   //     address: "0x846f52020749715f02aef25b5d1d65e48945649d",
@@ -67,7 +67,7 @@ const DetailPage = () => {
 
   return (
     <div>
-      <h1>Token Detail - {id} </h1>
+      <h3>Token Detail - {id} </h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Symbol:</label>
@@ -83,8 +83,11 @@ const DetailPage = () => {
         </div>
 
         <div>
-          <label className="form-label">CEX:</label>
-          <input className="form-input" type="text" name="cex" value={token.cex} onChange={handleChange} />
+          <label className="form-label">CEX broker:</label>
+          <select className="form-input" name="cex" value={token.cex} onChange={handleChange}>
+            <option value="gate">gate</option>
+            <option value="kucoin">kucoin</option>
+          </select>
         </div>
         <div>
           <label className="form-label">BnbPool:</label>
