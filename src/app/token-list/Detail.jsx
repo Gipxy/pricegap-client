@@ -36,7 +36,6 @@ const DetailPage = () => {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     const { name, value, type, checked } = e.target;
     setToken((prevState) => ({
       ...prevState,
