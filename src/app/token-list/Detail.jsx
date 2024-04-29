@@ -59,6 +59,7 @@ const DetailPage = () => {
     }
 
     token.updatedTime = Date.now();
+    token.decimals = Number(token.decimals);
 
     await upsertToken(token);
 
