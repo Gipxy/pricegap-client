@@ -166,7 +166,7 @@ const Bep20List = () => {
   return (
     <div className={"ag-theme-quartz"} style={{ width: "100%", height: "100%" }}>
       <div className="button-bar">
-        <h2>BEP20 Token List from Kucoin</h2>
+        <h2>BEP20 Token - Kucoin</h2>
         <div className="buttons">
           <button onClick={reload}>Reload</button>
         </div>
