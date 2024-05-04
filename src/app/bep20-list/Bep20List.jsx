@@ -87,7 +87,7 @@ const colDefs = [
     width: 100,
     cellRenderer: function (params) {
       return (
-        <a href="https://poocoin.app/tokens/{params.value}" target="_blank" rel="noopener">
+        <a href={"https://poocoin.app/tokens/" + params.value} target="_blank" rel="noopener">
           Link
         </a>
       );
