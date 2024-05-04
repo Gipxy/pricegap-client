@@ -86,7 +86,11 @@ const colDefs = [
     headerName: "PooCoin",
     width: 100,
     cellRenderer: function (params) {
-      return '<a href="https://poocoin.app/tokens/' + params.value + '" target="_blank" rel="noopener"> Link </a>';
+      return (
+        <a href="https://poocoin.app/tokens/${params.value}" target="_blank" rel="noopener">
+          Link
+        </a>
+      );
     },
   },
   { field: "withdrawalMinFee", width: 100 },
