@@ -90,6 +90,14 @@ const colDefs = [
     valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
   },
   { field: "precision", width: 60 },
+  {
+    field: "contractAddress",
+    headerName: "PooCoin",
+    width: 100,
+    cellRenderer: function (params) {
+      return `<a href="https://poocoin.app/tokens/${params.value}" target="_blank" rel="noopener"> Link </a>`;
+    },
+  },
 ];
 const defaultGridOptions = {
   rowHeight: 28,
