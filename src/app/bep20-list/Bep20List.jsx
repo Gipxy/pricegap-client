@@ -4,6 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import React, { useState, useRef, useEffect } from "react";
 import { getBep20List } from "../../api/token";
 import { shortDateTime } from "../../utils/util";
+import { useNavigate } from "react-router-dom";
 
 const formatTime = (params) => {
   return shortDateTime(new Date(params.value));
@@ -69,37 +70,16 @@ const fix8 = (params) => {
   makerCoefficient: '2'
 }
 */
+/*
+    symbol: spl[0],
+    address: spl[1],
+    decimals: 18,
+    cex: spl[2],
+    bnbPool: spl[3],
+    monitorPrice: true,
+    amount: Number(spl[4]),
+*/
 
-const colDefs = [
-  { field: "pair", width: 110 },
-  { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 100 },
-  { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 100 },
-  { field: "fullName", width: 150 },
-  { field: "bid", width: 100 },
-  { field: "ask", width: 100 },
-  { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
-  { field: "contractAddress", width: 370 },
-  {
-    field: "contractAddress",
-    headerName: "PooCoin",
-    width: 100,
-    cellRenderer: function (params) {
-      return (
-        <a href={"https://poocoin.app/tokens/" + params.value} target="_blank" rel="noopener">
-          Link
-        </a>
-      );
-    },
-  },
-  { field: "currency", width: 100 },
-  { field: "time", width: 140, valueFormatter: formatTime },
-  { field: "withdrawalMinFee", width: 100 },
-  {
-    field: "withdrawalMinVal",
-    width: 100,
-    valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
-  },
-];
 const defaultGridOptions = {
   rowHeight: 28,
   headerHeight: 28,
@@ -107,7 +87,59 @@ const defaultGridOptions = {
 
 const Bep20List = () => {
   const gridApiRef = useRef();
+  const navigate = useNavigate();
   const [rowData, setRowData] = useState([]);
+
+  const colDefs = [
+    {
+      field: "Actions",
+      width: 80,
+      valueGetter: (params) => params.data,
+      cellRenderer: (params) => {
+        const data = params.data;
+        console.log("data: ", data);
+        let bnbPool = false;
+        if (data.bnbPcV2 && data.bnbPcV2 > 10000) {
+          bnbPool = true;
+        }
+        let amount = 0;
+        if (data.bid) {
+          amount = 200 / data.bid; //200USDT
+        }
+        let id = `${data.currency}_${data.contractAddress}_kucoin_${bnbPool}_${amount}`;
+
+        return <button onClick={() => navigate("/token-detail/" + id)}> Add </button>;
+      },
+    },
+    { field: "pair", width: 110 },
+    { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 100 },
+    { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 100 },
+    { field: "fullName", width: 150 },
+    { field: "bid", width: 100 },
+    { field: "ask", width: 100 },
+    { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
+    { field: "contractAddress", width: 370 },
+    {
+      field: "contractAddress",
+      headerName: "PooCoin",
+      width: 100,
+      cellRenderer: function (params) {
+        return (
+          <a href={"https://poocoin.app/tokens/" + params.value} target="_blank" rel="noopener">
+            Link
+          </a>
+        );
+      },
+    },
+    { field: "currency", width: 100 },
+    { field: "time", width: 140, valueFormatter: formatTime },
+    { field: "withdrawalMinFee", width: 100 },
+    {
+      field: "withdrawalMinVal",
+      width: 100,
+      valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
+    },
+  ];
 
   useEffect(() => {
     (async function () {

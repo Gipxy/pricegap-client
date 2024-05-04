@@ -8,6 +8,9 @@ const DetailPage = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
+
+  const paramToken = parseIdInfo(id);
+
   const [tokens, setTokens] = useState([]);
   const [token, setToken] = useState({ bnbPool: true, monitorPrice: true, decimals: 18, cex: "gate" });
 
@@ -24,6 +27,12 @@ const DetailPage = () => {
 
   useEffect(() => {
     (async function () {
+      if (paramToken) {
+        //send from parameter, then no need query from DB
+        setToken(paramToken);
+        return;
+      }
+
       const data = await getAllTokens();
       const newTokens = data.tokens;
       setTokens(newTokens);
@@ -113,5 +122,23 @@ const DetailPage = () => {
     </div>
   );
 };
+
+function parseIdInfo(idInfo) {
+  if (!idInfo || idInfo.length < 10) {
+    return null;
+  }
+
+  const spl = idInfo.split("_");
+
+  return {
+    symbol: spl[0],
+    address: spl[1],
+    decimals: 18,
+    cex: spl[2],
+    bnbPool: spl[3],
+    monitorPrice: true,
+    amount: Number(spl[4]),
+  };
+}
 
 export default DetailPage;
