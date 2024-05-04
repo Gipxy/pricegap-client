@@ -75,12 +75,11 @@ const colDefs = [
   { field: "pair", width: 110 },
   { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 120 },
   { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 120 },
-  { field: "currency", width: 100 },
   { field: "fullName", width: 150 },
   { field: "bid", width: 100 },
   { field: "ask", width: 100 },
   { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
-  { field: "contractAddress", width: 400 },
+  { field: "contractAddress", width: 370 },
   {
     field: "contractAddress",
     headerName: "PooCoin",
@@ -93,6 +92,7 @@ const colDefs = [
       );
     },
   },
+  { field: "currency", width: 100 },
   { field: "withdrawalMinFee", width: 100 },
   {
     field: "withdrawalMinVal",
