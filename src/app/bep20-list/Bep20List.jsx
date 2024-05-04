@@ -73,6 +73,9 @@ const fix8 = (params) => {
 const colDefs = [
   { field: "time", width: 140, valueFormatter: formatTime },
   { field: "pair", width: 110 },
+  { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 120 },
+  { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 120 },
+  { field: "pair", width: 110 },
   { field: "currency", width: 100 },
   { field: "fullName", width: 150 },
   { field: "bid", width: 100 },
@@ -84,8 +87,7 @@ const colDefs = [
   {
     field: "withdrawalMinVal",
     width: 100,
-    valueGetter: (params) =>
-      Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
+    valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
   },
   { field: "precision", width: 60 },
 ];
