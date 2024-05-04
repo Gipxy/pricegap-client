@@ -104,7 +104,11 @@ const Bep20List = () => {
         }
         let amount = 0;
         if (data.bid) {
-          amount = 200 / data.bid; //200USDT
+          if (data.bid < 10) {
+            amount = Math.floor(200 / data.bid); //200USDT
+          } else {
+            amount = (200 / data.bid).toFixed(4); //200USDT
+          }
         }
         let id = `${data.currency}_${data.contractAddress}_kucoin_${bnbPool}_${amount}`;
 

@@ -135,7 +135,7 @@ function parseIdInfo(idInfo) {
     address: spl[1],
     decimals: 18,
     cex: spl[2],
-    bnbPool: spl[3],
+    bnbPool: spl[3] == "true",
     monitorPrice: true,
     amount: Number(spl[4]),
   };
