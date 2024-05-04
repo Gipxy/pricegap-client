@@ -77,7 +77,7 @@ const DetailPage = () => {
 
   return (
     <div>
-      <h3>Token Detail - {id} </h3>
+      <h3>Token - {id == "new" ? "Create New" : token?.symbol} </h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Symbol:</label>
