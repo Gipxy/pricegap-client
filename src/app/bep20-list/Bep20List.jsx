@@ -72,8 +72,8 @@ const fix8 = (params) => {
 
 const colDefs = [
   { field: "pair", width: 110 },
-  { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 120 },
-  { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 120 },
+  { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 100 },
+  { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 100 },
   { field: "fullName", width: 150 },
   { field: "bid", width: 100 },
   { field: "ask", width: 100 },
