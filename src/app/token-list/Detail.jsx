@@ -116,6 +116,9 @@ const DetailPage = () => {
           <input className="form-input" type="text" name="remark" value={token.remark} onChange={handleChange} />
         </div>
         <div className="form-container">
+          <a href={"https://poocoin.app/tokens/" + token.address} target="_blank" rel="noopener" style={{ marginRight: "20px" }}>
+            PooCoin Info
+          </a>
           <button type="submit">Save</button>
         </div>
       </form>
