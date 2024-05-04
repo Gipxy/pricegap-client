@@ -81,7 +81,6 @@ const colDefs = [
   { field: "bid", width: 100 },
   { field: "ask", width: 100 },
   { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
-  { field: "averagePrice", width: 100, valueFormatter: fix8 },
   { field: "contractAddress", width: 400 },
   { field: "withdrawalMinFee", width: 100 },
   {
@@ -89,13 +88,12 @@ const colDefs = [
     width: 100,
     valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
   },
-  { field: "precision", width: 60 },
   {
     field: "contractAddress",
     headerName: "PooCoin",
     width: 100,
     cellRenderer: function (params) {
-      return `<a href="https://poocoin.app/tokens/${params.value}" target="_blank" rel="noopener"> Link </a>`;
+      return '<a href="https://poocoin.app/tokens/' + params.value + '" target="_blank" rel="noopener"> Link </a>';
     },
   },
 ];
