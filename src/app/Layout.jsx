@@ -12,13 +12,13 @@ const Layout = () => {
             <Link to="/tokens">Token</Link>
           </li>
           <li>
-            <Link to="/pairs">Pairs</Link>
-          </li>
-          <li>
             <Link to="/bep20-list">BEP20</Link>
           </li>
           <li>
             <Link to="/live-check">Live</Link>
+          </li>
+          <li>
+            <Link to="/pairs">Pairs</Link>
           </li>
           {/* <li>
             <Link to="/ws-test">WS Test</Link>
@@ -26,7 +26,7 @@ const Layout = () => {
         </ul>
       </nav>
 
-      <Outlet />
+      <Outlet/>
     </>
   );
 };

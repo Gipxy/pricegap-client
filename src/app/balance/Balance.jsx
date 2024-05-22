@@ -1,7 +1,7 @@
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { AgGridReact } from "ag-grid-react";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { getBalanceLogs } from "../../api/balanceLog";
 import { shortDateTime } from "../../utils/util";
 
@@ -19,10 +19,14 @@ const combine = (params, col1, col2, n) => {
 };
 
 const fix = (value, n) => {
+  if (value === 0) {
+    return 0;
+  }
   return value ? Number(value).toFixed(n) : "";
 };
 
 const fix2 = (params) => {
+
   return fix(params.value, 2);
 };
 
@@ -56,12 +60,20 @@ const colDefs = [
   { field: "timestamp", width: 140, valueFormatter: formatTime },
   {
     field: "totalUsdt",
-    width: 120,
-    valueGetter: (params) => fix(Number(params.data.pcUsdt) + Number(params.data.kcUsdt) + Number(params.data.gateUsdt || 0), 2),
+    width: 110,
+    valueFormatter: fix2
   },
-
+  {
+    field: "totalUsdtWbnb", headerName: "UsdtWbnb",
+    width: 110,
+    valueFormatter: fix2
+  },
+  {
+    field: "pnl",
+    width: 80,
+    valueFormatter: fix2
+  },
   { field: "pair", width: 110 },
-
   {
     field: "purpose",
     width: 75,
@@ -86,14 +98,16 @@ const colDefs = [
   },
   { field: "side", width: 75 },
   { field: "amount", width: 75 },
-
   { field: "pcUsdt", width: 110, valueFormatter: fix4 },
   { field: "kcUsdt", width: 110, valueFormatter: fix4 },
   { field: "gateUsdt", width: 110, valueFormatter: fix4 },
+  { field: "pcWbnb", width: 110, valueFormatter: fix4 },
   { field: "pcChapz", width: 110, valueFormatter: fix4 },
   { field: "gateChapz", width: 110, valueFormatter: fix4 },
   { field: "pcDao", width: 110, valueFormatter: fix4 },
   { field: "kcDao", width: 110, valueFormatter: fix4 },
+  { field: "pcUmb", width: 110, valueFormatter: fix4 },
+  { field: "gateUmb", width: 110, valueFormatter: fix4 },
 ];
 const defaultGridOptions = {
   rowHeight: 28,
@@ -107,13 +121,13 @@ const Balance = () => {
   useEffect(() => {
     (async function () {
       const data = await getBalanceLogs();
-      setRowData(data.balanceLogs);
+      setRowData(data);
     })();
   }, []);
 
   const reload = async () => {
     const data = await getBalanceLogs();
-    setRowData(data.balanceLogs);
+    setRowData(data);
   };
 
   return (
