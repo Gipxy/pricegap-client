@@ -124,6 +124,7 @@ const Bep20List = () => {
     { field: "pair", width: 110 },
     { field: "bnbPcV2", headerName: "bnbPcV2 $", width: 100 },
     { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 100 },
+    { field: "cex", width: 100 },
     { field: "fullName", width: 150 },
     { field: "bid", width: 100 },
     { field: "ask", width: 100 },
