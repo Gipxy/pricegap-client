@@ -128,7 +128,7 @@ const Bep20List = () => {
     { field: "chain", width: 80 },
     { field: "mid", width: 80 },
     { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
-    { field: "contractAddress", width: 370 },
+    { field: "contractAddress", headerName: "BSC Address", width: 370 },
     { field: "fullName", width: 150 },
     {
       field: "contractAddress",
