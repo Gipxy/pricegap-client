@@ -126,11 +126,10 @@ const Bep20List = () => {
     { field: "usdtPcV2", headerName: "usdtPcV2 $", width: 100 },
     { field: "cex", width: 80 },
     { field: "chain", width: 80 },
-    { field: "fullName", width: 150 },
-    { field: "bid", width: 80 },
-    { field: "ask", width: 80 },
+    { field: "mid", width: 80 },
     { field: "volValue", headerName: "Vol value 24h", width: 120, valueFormatter: fix2 },
     { field: "contractAddress", width: 370 },
+    { field: "fullName", width: 150 },
     {
       field: "contractAddress",
       headerName: "PooCoin",
@@ -144,13 +143,9 @@ const Bep20List = () => {
       },
     },
     { field: "currency", width: 100 },
-    { field: "time", width: 140, valueFormatter: formatTime },
+    { field: "bid", width: 80 },
+    { field: "ask", width: 80 },
     { field: "withdrawalMinFee", width: 100 },
-    {
-      field: "withdrawalMinVal",
-      width: 100,
-      valueGetter: (params) => Number(params.data.averagePrice * params.data.withdrawalMinFee).toFixed(8),
-    },
   ];
 
   useEffect(() => {
